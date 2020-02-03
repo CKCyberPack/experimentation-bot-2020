@@ -5,6 +5,13 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+/* To do this week (2020-01-29):
+
+  - Change autonomous swing turn to pivot turn
+  - Use tensorflow and see if it's better at object recogition than current pipeline algorithm
+
+
+*/
 package frc.robot;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -18,12 +25,8 @@ import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.cscore.*;
+
 
 /**
 
@@ -37,7 +40,8 @@ import edu.wpi.cscore.*;
   For each mode in the Driver Station, methods are called to control it. This is how we differentiate from Autonomous, Teleop, etc.
 
  */
-public class Robot extends TimedRobot {
+public class Robot extends TimedRobot 
+{
 
   // final initializations
 
@@ -48,6 +52,7 @@ public class Robot extends TimedRobot {
   public void robotInit() // runs when code begins, no matter which drive mode
   {
    
+
     // Creatng the camera server for the USB cam
 
     UsbCamera cam = CameraServer.getInstance().startAutomaticCapture();
@@ -55,6 +60,8 @@ public class Robot extends TimedRobot {
     cam.setResolution(RMap.IMG_WIDTH,RMap.IMG_HEIGHT);
 
     cam.setFPS(15); // Standard FPS for our vision, subject to change
+
+
 /*
 
     visionThread constructor: begins capturing images from the camera
